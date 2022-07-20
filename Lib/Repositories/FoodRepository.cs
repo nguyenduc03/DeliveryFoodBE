@@ -22,20 +22,7 @@ namespace Lib.Repositories
         public FoodRepository(ApplicationDbContext dbContext) : base(dbContext) { 
 
         }
-        public List<Food> GetFoodList() {
-            try
-            {
-                var query = _dbcontext.Food;
-                return query.ToList();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-           
-        }
-
+        
 
         public List<Food> GetFoodList(int code)
         {
@@ -96,11 +83,7 @@ namespace Lib.Repositories
             throw new NotImplementedException();
         }
 
-        List<Food> IFoodRepository.GetFoodList()
-        {
-            return GetFoodList();
-            throw new NotImplementedException();
-        }
+       
 
         public List<Food> GetFoodList1(List<Food> input)
         {
@@ -112,6 +95,12 @@ namespace Lib.Repositories
             }
             return list;
             throw new NotImplementedException();
+        }
+
+        public List<Food> GetFoodList()
+        {
+                var query = _dbcontext.Food;
+                return query.ToList();
         }
     }
 }

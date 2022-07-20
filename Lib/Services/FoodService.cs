@@ -122,7 +122,7 @@ namespace Lib.Services
 
         }
 
-        public float GetPrice ( int id)
+        public double GetPrice ( int id)
         {
             return dbContext.Food.FirstOrDefault(s=>s.ID_Food == id).Price;
         }
