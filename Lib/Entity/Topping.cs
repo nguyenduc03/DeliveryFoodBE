@@ -14,7 +14,7 @@ namespace Lib.Entity
         public int ID_Topping { get; set; }
         public int ID_Category { get; set; }
         public string Name_Topping { get; set; }
-        public float Price { get; set; }
+        public double Price { get; set; }
         public string IMG { get; set; }
 
     }

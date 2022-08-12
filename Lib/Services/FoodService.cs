@@ -15,7 +15,6 @@ namespace Lib.Services
         public FoodService(ApplicationDbContext dbContext, IFoodRepository FoodRepository) {
             this.FoodRepository = FoodRepository;
             this.dbContext = dbContext;
-            
         }
         
         public void Save() {
@@ -124,7 +123,7 @@ namespace Lib.Services
 
         public double GetPrice ( int id)
         {
-            return dbContext.Food.FirstOrDefault(s=>s.ID_Food == id).Price;
+            return dbContext.Food.FirstOrDefault(s => s.ID_Food == id).Price;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Server.Controllers.api
     [Route("api/[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
-    {
+    { 
         private AccountService accountService { get; set; }
         public AccountController(AccountService accountService)
         {
