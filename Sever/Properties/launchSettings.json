@@ -5,6 +5,9 @@
     "iisExpress": {
       "applicationUrl": "http://localhost:48729",
       "sslPort": 44373
+    },
+    "iis": {
+      "applicationUrl": "http://127.0.0.1:8082"
     }
   },
   "profiles": {
@@ -17,6 +20,14 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
+    "Local IIS": {
+      "commandName": "IIS",
+      "launchBrowser": true,
+      "launchUrl": "http://127.0.0.1:8082",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
@@ -25,4 +36,4 @@
       }
     }
   }
-}
+  }

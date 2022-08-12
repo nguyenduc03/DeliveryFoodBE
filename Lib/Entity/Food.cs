@@ -17,9 +17,9 @@ namespace Lib.Entity
         public string DateAdd { get; set; }
         public string Description { get; set; }
         public string Picture { get; set; }
-        public float Price { get; set; }
+        public double Price { get; set; }
         public bool Available { get; set; }
-        public float Rating { get; set; }
+        public double Rating { get; set; }
         public int ID_Discount { get; set; }
 
     }
