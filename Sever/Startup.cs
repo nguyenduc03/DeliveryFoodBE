@@ -61,7 +61,14 @@ namespace Server
             services.AddTransient<ICartRepository, CartRepository>();
             services.AddTransient<CartService>();
 
+            services.AddTransient<IProvinceRepository, ProvinceRepository>();
+            services.AddTransient<ProvinceService>();
 
+            services.AddTransient<IDistrictRepository, DistrictRepository>();
+            services.AddTransient<DistrictService>();
+
+            services.AddTransient<IWardRepository, WardRepository>();
+            services.AddTransient<WardService>();
 
             services.AddSingleton<ApplicationDbContext>();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Singleton);

@@ -33,7 +33,6 @@ namespace Lib.Repositories
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -79,7 +78,6 @@ namespace Lib.Repositories
             temp.DateAdd = Food.DateAdd;
             temp.Description = Food.Description;
             temp.Name_Food = Food.Name_Food;
-
             throw new NotImplementedException();
         }
 
@@ -91,7 +89,6 @@ namespace Lib.Repositories
             foreach (var item in input)
             {
                 list.Add(_dbcontext.Food.Find(item.ID_Food)) ;
-
             }
             return list;
             throw new NotImplementedException();
@@ -99,7 +96,7 @@ namespace Lib.Repositories
 
         public List<Food> GetFoodList()
         {
-                var query = _dbcontext.Food;
+                var query = _dbcontext.Food.Take(2);
                 return query.ToList();
         }
     }

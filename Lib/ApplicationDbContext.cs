@@ -14,8 +14,11 @@ namespace Lib
     {
         public DbSet<Category> Category { get; set; }
         public DbSet<Food> Food { get; set; }
+        public DbSet<Province> Province { get; set; }
+        public DbSet<District> District { get; set; }
         public DbSet<Account> Account { get; set; }
         public DbSet<Cart> Cart { get; set; }
+        public DbSet<Ward> Ward { get; set; }
         public DbSet<Invoice> Invoice { get; set; }
 
         public DbSet<InvoiceDetail> InvoiceDetail { get; set; }
