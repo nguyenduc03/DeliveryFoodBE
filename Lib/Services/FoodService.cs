@@ -23,7 +23,7 @@ namespace Lib.Services
         public List<Food> GetFoodList() {
             return FoodRepository.GetFoodList();
         }
-        public List<Food> GetFoodList(List<Food>input)
+        public List<Food> GetFoodList(List<Food> input)
         {
             return FoodRepository.GetFoodList1(input);
         }
@@ -37,17 +37,7 @@ namespace Lib.Services
         }
         public string UpdateFood(Food food)
         {
-            try
-            {
-                dbContext.Update(food);
-                Save();
-                return "Done";
-            }
-            catch (Exception e )
-            {
-                return e.Message;
-                throw;
-            }
+            return FoodRepository.UpdateFood(food);
         }
 
         public List<Food> GetRecentFood()
@@ -56,17 +46,8 @@ namespace Lib.Services
         }
 
         public string  InsertFood(Food st) {
-            try
-            {
-                dbContext.Food.Add(st);
-                Save();
-                return "Done";
-            }
-            catch (Exception e)
-            {
-                return e.Message;
-                throw;
-            }
+            return FoodRepository.InsertFood(st);
+
         }
 
         public Food GetFoodByID(int ID_Input)
@@ -76,54 +57,18 @@ namespace Lib.Services
 
         public List<Food> GetPopularFoodList()
         {
-            List<Food> list = GetFoodList();
-            int [] count = new int [list.Count];
-            Food [] foods = list.ToArray();
-            List<InvoiceDetail> invoiceDetails = dbContext.InvoiceDetail.ToList();
-            foreach (var item in invoiceDetails)
-            {
-                for (int i = 0; i < foods.Length; i++)
-                {
-                    if(item.ID_Food == foods[i].ID_Food)
-                    {
-                        count[i] += item.Quantity;
-                    }
-                }
-            }
-            return Sort(count, foods);
+
+            return FoodRepository.GetPopularFoodList();
 
         }
-
-        public List<Food > Sort (int []count,Food[] foods)
-        {
-            for (int i = 0; i < foods.Length-1; i++)
-            {
-                for (int j = i+1; j < foods.Length; j++)
-                {
-                    if(count[i] < count[j])
-                    {
-                        Swap(count[i], count[j]);
-                        Food food = foods[j];
-                        foods[j] = food;
-                        foods[i] = food;
-                    }
-                }
-            }
-            return foods.ToList();
-        }
-
-     
-        private void Swap(int v1, int v2)
-        {
-            int temp = v1;
-            v1 = v2;
-            v2 = temp;
-
-        }
-
         public double GetPrice ( int id)
         {
-            return dbContext.Food.FirstOrDefault(s => s.ID_Food == id).Price;
+            return FoodRepository.GetPrice(id);
+        }
+
+        public List<List<Food>> GetFoodDiscount()
+        {
+            return FoodRepository.GetFoodDiscount();
         }
     }
 }

@@ -20,6 +20,7 @@ namespace Lib
         public DbSet<Cart> Cart { get; set; }
         public DbSet<Ward> Ward { get; set; }
         public DbSet<Invoice> Invoice { get; set; }
+        public DbSet<Discount> Discount { get; set; }
 
         public DbSet<InvoiceDetail> InvoiceDetail { get; set; }
         public DbSet<Topping> Topping { get; set; }

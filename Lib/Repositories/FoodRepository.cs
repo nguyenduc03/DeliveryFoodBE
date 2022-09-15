@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lib.Repositories
 {
@@ -13,9 +14,13 @@ namespace Lib.Repositories
         List<Food> GetFoodList1(List<Food> input);
         List<Food> GetFoodList();
         List<Food> GetFoodList(int code);
-        List<Food> UpdateFood(Food Food);
+        string UpdateFood(Food Food);
         List<Food> GetRecentFood();
+        List<List<Food>> GetFoodDiscount();
+        string InsertFood(Food st);
+        double GetPrice(int id);
         List<Food> GetFoodByName(string name);
+        List<Food> GetPopularFoodList();
     }
     public class FoodRepository : RepositoryBase<Food>, IFoodRepository
     {
@@ -69,17 +74,7 @@ namespace Lib.Repositories
             }
             return foods;
         }
-        public List<Food> UpdateFood(Food Food)
-        {
-            Food temp = (Food)_dbcontext.Food.Where(s => s.ID_Food == Food.ID_Food);
-            temp.Picture = Food.Picture;
-            temp.Price = Food.Price;
-            temp.ID_Category = Food.ID_Category;
-            temp.DateAdd = Food.DateAdd;
-            temp.Description = Food.Description;
-            temp.Name_Food = Food.Name_Food;
-            throw new NotImplementedException();
-        }
+     
 
        
 
@@ -98,6 +93,128 @@ namespace Lib.Repositories
         {
                 var query = _dbcontext.Food.Take(2);
                 return query.ToList();
+        }
+        public string UpdateFood(Food food)
+        {
+            try
+            {
+                _dbcontext.Update(food);
+                _dbcontext.SaveChanges();
+                return "Done";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+                throw;
+            }
+        }
+
+        public string InsertFood(Food st)
+        {
+            try
+            {
+                _dbcontext.Food.Add(st);
+                _dbcontext.SaveChanges ();
+                return "Done";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+                throw;
+            }
+        }
+
+        public double GetPrice(int id)
+        {
+            return _dbcontext.Food.FirstOrDefault(s => s.ID_Food == id).Price;
+        }
+        public List<Food> GetPopularFoodList()
+        {
+            List<Food> list = GetFoodList();
+            int[] count = new int[list.Count];
+            Food[] foods = list.ToArray();
+            List<InvoiceDetail> invoiceDetails = _dbcontext.InvoiceDetail.ToList();
+            foreach (var item in invoiceDetails)
+            {
+                for (int i = 0; i < foods.Length; i++)
+                {
+                    if (item.ID_Food == foods[i].ID_Food)
+                    {
+                        count[i] += item.Quantity;
+                    }
+                }
+            }
+            return Sort(count, foods);
+
+        }
+        public List<Food> Sort(int[] count, Food[] foods)
+        {
+            for (int i = 0; i < foods.Length - 1; i++)
+            {
+                for (int j = i + 1; j < foods.Length; j++)
+                {
+                    if (count[i] < count[j])
+                    {
+                        Swap(count[i], count[j]);
+                        Food food = foods[j];
+                        foods[j] = food;
+                        foods[i] = food;
+                    }
+                }
+            }
+            return foods.ToList();
+        }
+        private void Swap(int v1, int v2)
+        {
+            int temp = v1;
+            v1 = v2;
+            v2 = temp;
+
+        }
+        static List<int> quicksort(List<int> list)
+        {
+            if (list.Count <= 1) return list;
+            int pivotPosition = list.Count / 2;
+            int pivotValue = list[pivotPosition];
+            list.RemoveAt(pivotPosition);
+            List<int> smaller = new List<int>(); 
+            List<int> greater = new List<int>();
+            foreach (int item in list)
+            {
+                if (item < pivotValue)
+                {
+                    smaller.Add(item);
+                }
+                else
+                {
+                    greater.Add(item);
+                }
+            }
+            List<int> sorted = quicksort(smaller);
+            sorted.Add(pivotValue);
+            sorted.AddRange(quicksort(greater));
+            return sorted;
+        }
+
+        public List<List<Food>> GetFoodDiscount()
+        {
+            List<Food> foods = _dbcontext.Food.ToList();
+            List<List<Food>> list = new List<List<Food>>();
+            List<Discount> discounts = _dbcontext.Discount.ToList();
+            foreach (var item in discounts)
+            {
+                if(DateTime.Parse(item.Date_End) >= DateTime.Now.Date)
+                {
+                    List<Food> temp = new List<Food>();
+                    foreach (var food in foods)
+                    {
+                        if(food.ID_Discount == item.ID_Discount)
+                            temp.Add(food);
+                    }
+                    list.Add(temp);
+                }
+            }
+            return list;
         }
     }
 }

@@ -107,8 +107,8 @@ namespace Server.Controllers.api
         public async Task<ActionResult> GetRecentfood()
         {
             try
-            {
-                List<Food> list = foodService.GetRecentFood();
+            {                List<Food> list = foodService.GetRecentFood();
+
                 if (list.Count == 0)
                 {
                     return Ok(new { status = false, data = "Null" });
@@ -197,6 +197,24 @@ namespace Server.Controllers.api
             }
 
         }
+        [HttpGet("get-list-food-discount")]
+        public async Task<ActionResult> GetFoodDiscount()
+        {
+            try
+            {
+                List<List<Food>> list = foodService.GetFoodDiscount();
+                if (list.Count == 0)
+                {
+                    return Ok(new { status = false, data = "Null" });
+                }
+                return Ok(new { status = true, data = list });
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+
+        }
     }
 }
