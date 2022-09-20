@@ -17,7 +17,9 @@ namespace Lib.Repositories
         string UpdateFood(Food Food);
         List<Food> GetRecentFood();
         List<List<Food>> GetFoodDiscount();
+        List<Food> GetMoreFood(int id);
         string InsertFood(Food st);
+        List<Food> GetTopFood();
         double GetPrice(int id);
         List<Food> GetFoodByName(string name);
         List<Food> GetPopularFoodList();
@@ -91,7 +93,7 @@ namespace Lib.Repositories
 
         public List<Food> GetFoodList()
         {
-                var query = _dbcontext.Food.Take(2);
+                var query = _dbcontext.Food.Take(10);
                 return query.ToList();
         }
         public string UpdateFood(Food food)
@@ -215,6 +217,18 @@ namespace Lib.Repositories
                 }
             }
             return list;
+        }
+
+        public List<Food> GetMoreFood(int id)
+        {
+            var foods = _dbcontext.Food.Where(s=>s.ID_Food>id && s.ID_Food<=(id+10) && s.Available==true ).ToList();
+            return foods;
+        }
+
+        public List<Food> GetTopFood()
+        {
+            var foods = _dbcontext.Food.Where(s=>s.Available==true).OrderByDescending(s => s.Rating).Take(10);
+            return foods.ToList();
         }
     }
 }

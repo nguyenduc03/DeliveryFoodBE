@@ -70,6 +70,9 @@ namespace Server
             services.AddTransient<IWardRepository, WardRepository>();
             services.AddTransient<WardService>();
 
+             services.AddTransient<IDiscountRepository, DiscountRepository>();
+            services.AddTransient<DiscountService>();
+
             services.AddSingleton<ApplicationDbContext>();
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")),

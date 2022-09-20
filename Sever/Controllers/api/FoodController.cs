@@ -178,6 +178,28 @@ namespace Server.Controllers.api
             }
         }
 
+        [HttpPost("Get-more-food")]
+        public async Task<ActionResult> GetMoreFood(Food foodInput)
+        {
+            try
+            {
+                int temp = 0;
+                if(foodInput.ID_Food !=-1)
+                   temp= foodInput.ID_Food;
+                List<Food> foodList = foodService.GetMoreFood(temp);
+                if (foodList.Count > 0)
+                    return Ok(new { status = true, data = foodList });
+                else
+                    return Ok(new { status = false, data = "Null" });
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
         [HttpGet("get-popular-food-list")]
         public async Task<ActionResult> GetPopularfoodList()
         {
@@ -197,6 +219,8 @@ namespace Server.Controllers.api
             }
 
         }
+
+
         [HttpGet("get-list-food-discount")]
         public async Task<ActionResult> GetFoodDiscount()
         {
@@ -216,5 +240,29 @@ namespace Server.Controllers.api
             }
 
         }
+        [HttpGet("get-top-food")]
+        public async Task<ActionResult> GetTopFood()
+        {
+            try
+            {
+                List<Food> list = foodService.GetTopFood();
+                if (list.Count == 0)
+                {
+                    return Ok(new { status = false, data = "Null" });
+                }
+                return Ok(new { status = true, data = list });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        
+
+
+
     }
 }

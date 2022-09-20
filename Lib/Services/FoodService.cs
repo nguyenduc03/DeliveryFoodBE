@@ -35,6 +35,14 @@ namespace Lib.Services
         {
             return FoodRepository.GetFoodByName (Name);
         }
+        public List<Food> GetTopFood()
+        {
+            return FoodRepository.GetTopFood();
+        }
+        public List<Food> GetMoreFood (int id)
+        {
+            return FoodRepository.GetMoreFood(id);
+        }
         public string UpdateFood(Food food)
         {
             return FoodRepository.UpdateFood(food);

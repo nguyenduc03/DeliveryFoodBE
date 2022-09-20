@@ -17,6 +17,7 @@ namespace Lib.Entity
         public string Description { get; set; }
         public int Percent { get; set; }
         public string Code { get; set; }
+        public bool Available { get; set; }
 
     }
 }
