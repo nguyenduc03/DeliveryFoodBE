@@ -52,5 +52,24 @@ namespace Sever.Controllers.api
             }
 
         }
+        [HttpGet("get-discount-invoice")]
+        public async Task<ActionResult> GetDiscountInvoice()
+        {
+            try
+            {
+                List<Discount> discounts = discountService.GetDiscountInvoice();
+                if (discounts.Count == 0)
+                {
+                    return Ok(new { status = false, data = "Null" });
+                }
+                return Ok(new { status = true, data = discounts });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
     }
 }

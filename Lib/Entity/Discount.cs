@@ -18,6 +18,7 @@ namespace Lib.Entity
         public int Percent { get; set; }
         public string Code { get; set; }
         public bool Available { get; set; }
+        public bool ForFood { get; set; }   
 
     }
 }

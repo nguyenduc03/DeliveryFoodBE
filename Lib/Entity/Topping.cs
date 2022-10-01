@@ -16,6 +16,7 @@ namespace Lib.Entity
         public string Name_Topping { get; set; }
         public double Price { get; set; }
         public string IMG { get; set; }
+        public bool Available { get; set; }
 
     }
 }

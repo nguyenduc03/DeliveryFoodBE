@@ -12,6 +12,7 @@ namespace Lib.Repositories
     {
         Discount GetDiscount(int IdDiscount);
         List<Discount> GetDiscountAvailable();
+        List<Discount> GetDiscountInvoice();
 
     }
     public class DiscountRepository : RepositoryBase<Discount>, IDiscountRepository
@@ -29,6 +30,12 @@ namespace Lib.Repositories
         public List<Discount> GetDiscountAvailable()
         {
            var discounts = _dbcontext.Discount.Where(s => s.Available == true).Take(10);
+            return discounts.ToList();
+        }
+
+        public List<Discount> GetDiscountInvoice()
+        {
+            var discounts = _dbcontext.Discount.Where(s => s.ForFood == false && s.Available == true);
             return discounts.ToList();
         }
     }

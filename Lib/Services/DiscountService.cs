@@ -30,5 +30,10 @@ namespace Lib.Services
         {
             return DiscountRepository.GetDiscountAvailable();
         }
+        
+            public List<Discount> GetDiscountInvoice()
+        {
+            return DiscountRepository.GetDiscountInvoice();
+        }
     }
 }

@@ -21,11 +21,11 @@ namespace Lib.Repositories
         public List<Topping> GetToppingList() {
             try
             {
-                var query = _dbcontext.Topping;
+                var query = _dbcontext.Topping.Where(s=>  s.Available == true);
                 return query.ToList();
             }
             catch (Exception)
-            {
+            { 
 
                 throw;
             }
@@ -35,7 +35,7 @@ namespace Lib.Repositories
         public List<Topping> GetToppingList(int code) {
             try
             {
-                var query = _dbcontext.Topping.Where(s => s.ID_Category == code);
+                var query = _dbcontext.Topping.Where(s => s.ID_Category == code && s.Available == true);
                 return query.ToList();
             }
             catch (Exception)
