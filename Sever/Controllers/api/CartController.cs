@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace Server.Controllers.api
 {
     [Route("api/[controller]")]
@@ -38,6 +39,22 @@ namespace Server.Controllers.api
                 throw;
             }
            
+        }
+        [HttpGet("get-QR")]
+        public async Task<ActionResult> GetQR(Account account)
+        {
+            try
+            {
+                string list = cartService.GetQR(account);
+                
+                return Ok(new { status = true, data = list });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
 
         [HttpPost("insert-list-food")]

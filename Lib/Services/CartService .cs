@@ -98,5 +98,9 @@ namespace Lib.Services
                 throw;
             }
         }
+        public string GetQR (Account account)
+        {
+            return CartRepository.GetQR(account.SDT,account.Password);
+        }
     }
 }
