@@ -67,9 +67,6 @@ namespace Lib.Repositories
             string path = "E:\\QRCode\\QR"+ DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString()+".png";
             qrCode.SaveAsImage(path);
             // up QR code to clound
-
-
-
             return UploadIMG(path);
         }
         public static Cloudinary cloudinary;

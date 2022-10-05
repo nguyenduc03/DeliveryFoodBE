@@ -35,7 +35,7 @@ namespace Lib.Repositories
 
         public List<Discount> GetDiscountInvoice()
         {
-            var discounts = _dbcontext.Discount.Where(s => s.ForFood == false && s.Available == true);
+            var discounts = _dbcontext.Discount.Where(s =>  s.Available == true);
             return discounts.ToList();
         }
     }

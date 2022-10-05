@@ -20,7 +20,7 @@ namespace Lib.Entity
         public double Price { get; set; }
         public bool Available { get; set; }
         public double Rating { get; set; }
-        public int ID_Discount { get; set; }
+        public int PercenDiscount { get; set; }
 
     }
 }

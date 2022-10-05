@@ -210,8 +210,7 @@ namespace Lib.Repositories
                     List<Food> temp = new List<Food>();
                     foreach (var food in foods)
                     {
-                        if(food.ID_Discount == item.ID_Discount)
-                            temp.Add(food);
+                        
                     }
                     list.Add(temp);
                 }

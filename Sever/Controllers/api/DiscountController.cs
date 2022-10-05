@@ -14,25 +14,7 @@ namespace Sever.Controllers.api
             this.discountService = discountService;
         }
 
-        [HttpPost("get-discount")]
-        public async Task<ActionResult> GetDiscount(Food FoodInput)
-        {
-            try
-            {
-                Discount discount = discountService.GetDiscount(FoodInput.ID_Discount);
-                if (discount == null)
-                {
-                    return Ok(new { status = false, data = "Null" });
-                }
-                return Ok(new { status = true, data = discount });
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-        }
+        
         [HttpGet("get-discount-available")]
         public async Task<ActionResult> GetDiscountAvailable()
         {
