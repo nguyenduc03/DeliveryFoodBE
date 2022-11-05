@@ -22,6 +22,8 @@ namespace Server.Controllers.api
             this.provinceService = provinceService;
         }
         //[Authorize(Roles = "Admin,Guest")]
+        [Authorize(Roles = "Guest")]
+
         [HttpGet("get-all-province")]
         public async Task<ActionResult> GetAllProvince() {
             try

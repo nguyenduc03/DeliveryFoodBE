@@ -18,6 +18,7 @@ namespace Lib.Repositories
         List<Food> GetRecentFood();
         List<List<Food>> GetFoodDiscount();
         List<Food> GetMoreFood(int id);
+        List<Food> GetTopFoodDiscount();
         string InsertFood(Food st);
         List<Food> GetTopFood();
         double GetPrice(int id);
@@ -126,9 +127,10 @@ namespace Lib.Repositories
             }
         }
 
-        public double GetPrice(int id)
+        public double GetPrice(int idFood)
         {
-            return _dbcontext.Food.FirstOrDefault(s => s.ID_Food == id).Price;
+
+            return _dbcontext.Food.FirstOrDefault(s => s.ID_Food == idFood).Price;
         }
         public List<Food> GetPopularFoodList()
         {
@@ -166,11 +168,11 @@ namespace Lib.Repositories
             }
             return foods.ToList();
         }
-        private void Swap(int v1, int v2)
+        private void Swap(int input1, int input2)
         {
-            int temp = v1;
-            v1 = v2;
-            v2 = temp;
+            int temp = input1;
+            input1 = input2;
+            input2 = temp;
 
         }
         static List<int> quicksort(List<int> list)
@@ -227,6 +229,12 @@ namespace Lib.Repositories
         public List<Food> GetTopFood()
         {
             var foods = _dbcontext.Food.Where(s=>s.Available==true).OrderByDescending(s => s.Rating).Take(10);
+            return foods.ToList();
+        }
+
+        public List<Food> GetTopFoodDiscount()
+        {
+            var foods = _dbcontext.Food.OrderByDescending(s => s.PercenDiscount).Take(10);
             return foods.ToList();
         }
     }

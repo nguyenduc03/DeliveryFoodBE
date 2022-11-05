@@ -23,6 +23,10 @@ namespace Lib.Services
         public List<Food> GetFoodList() {
             return FoodRepository.GetFoodList();
         }
+        public List<Food> GetTopFoodDiscount()
+        {
+            return FoodRepository.GetTopFoodDiscount();
+        }
         public List<Food> GetFoodList(List<Food> input)
         {
             return FoodRepository.GetFoodList1(input);

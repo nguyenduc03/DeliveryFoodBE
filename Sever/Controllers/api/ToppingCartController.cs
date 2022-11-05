@@ -21,6 +21,8 @@ namespace Server.Controllers.api
             this.ToppingCartService = ToppingCartService;
         }
         //[Authorize(Roles = "Admin,Guest")]
+        [Authorize(Roles = "Guest")]
+
         [HttpGet("get-Topping-Cart-list")]
         public async Task<ActionResult> GetToppingList(String  SDT) {
             try
@@ -39,6 +41,8 @@ namespace Server.Controllers.api
             }
            
         }
+        [Authorize(Roles = "Guest")]
+
         [HttpPost("insert-toppingDetails")]
         public async Task<ActionResult> InsertToppingCart(List<ToppingCartInsertModel> toppingDetailCarts)
         {
@@ -62,6 +66,7 @@ namespace Server.Controllers.api
             }
 
         }
+        [Authorize(Roles = "Guest")]
 
         [HttpPost("update-Topping")]
         public async Task<ActionResult> UpdateFood(ToppingDetailCart topping)
@@ -75,6 +80,7 @@ namespace Server.Controllers.api
                 throw;
             }
         }
+        [Authorize(Roles = "Guest")]
 
         [HttpPost("Delete-Topping")]
         public async Task<ActionResult> DeleteTopping(ToppingDetailCart topping)

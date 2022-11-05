@@ -23,7 +23,7 @@ namespace Server.Controllers.api
         }
         //[Authorize(Roles = "Admin,Guest")]
         [HttpGet("get-all-food-list")]
-        public async Task<ActionResult> GetAllfoodList() {
+        public async Task<ActionResult> GetAllFoodList() {
             try
             {
                 List<Food> list = foodService.GetFoodList();
@@ -42,11 +42,11 @@ namespace Server.Controllers.api
         }
 
         [HttpPost("get-foods")]
-        public async Task<ActionResult> GetfoodCart(List<Food> input)
+        public async Task<ActionResult> GetFoodCart(List<Food> inputFoods)
         {
             try
             {
-                List<Food> list = foodService.GetFoodList(input);
+                List<Food> list = foodService.GetFoodList(inputFoods);
                 if (list.Count == 0)
                 {
                     return Ok(new { status = false, data = "Null" });
@@ -62,11 +62,11 @@ namespace Server.Controllers.api
         }
 
         [HttpPost("get-food-byID")]
-        public async Task<ActionResult> GetFoodByID(Food input)
+        public async Task<ActionResult> GetFoodByID(Food inputFood)
         {
             try
             {
-                Food food = foodService.GetFoodByID(input.ID_Food);
+                Food food = foodService.GetFoodByID(inputFood.ID_Food);
                 if (food.ID_Category== null )
                 {
                     return Ok(new { status = false, data = "Null" });
@@ -259,8 +259,27 @@ namespace Server.Controllers.api
             }
 
         }
+        [HttpGet("get-top-food-discount")]
+        public async Task<ActionResult> GetTopFoodDiscount()
+        {
+            try
+            {
+                List<Food> list = foodService.GetTopFoodDiscount();
+                if (list.Count == 0)
+                {
+                    return Ok(new { status = false, data = "Null" });
+                }
+                return Ok(new { status = true, data = list });
+            }
+            catch (Exception)
+            {
 
-        
+                throw;
+            }
+
+        }
+
+
 
 
 

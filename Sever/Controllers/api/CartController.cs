@@ -21,7 +21,7 @@ namespace Server.Controllers.api
         {
             this.cartService = cartService;
         }
-        //[Authorize(Roles = "Admin,Guest")]
+        [Authorize(Roles = "Guest")]
         [HttpGet("get-cart")]
         public async Task<ActionResult> GetCart(Account account) {
             try
@@ -40,6 +40,8 @@ namespace Server.Controllers.api
             }
            
         }
+        [Authorize(Roles = "Guest")]
+
         [HttpGet("get-QR")]
         public async Task<ActionResult> GetQR(Account account)
         {
@@ -56,6 +58,7 @@ namespace Server.Controllers.api
             }
 
         }
+        [Authorize(Roles = "Guest")]
 
         [HttpPost("insert-list-food")]
 
@@ -82,7 +85,8 @@ namespace Server.Controllers.api
             }
 
         }
-        
+        [Authorize(Roles = "Guest")]
+
         [HttpPost("insert-food")]
 
         // them topping 
@@ -106,6 +110,7 @@ namespace Server.Controllers.api
         }
 
 
+        [Authorize(Roles = "Guest")]
 
         [HttpPost("payment")]
         public async Task<ActionResult> Payment(Account Input)
@@ -127,6 +132,7 @@ namespace Server.Controllers.api
 
         }
 
+        [Authorize(Roles = "Guest")]
 
         [HttpPost("update-Cart")]
         public async Task<ActionResult> UpdateCart(List<Cart> carts)

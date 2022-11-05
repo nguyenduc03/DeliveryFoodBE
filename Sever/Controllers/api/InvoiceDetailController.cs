@@ -21,6 +21,8 @@ namespace Server.Controllers.api
             this.invoiceDetailService = invoiceDetailService;
         }
         //[Authorize(Roles = "Admin,Guest")]
+        [Authorize(Roles = "Guest")]
+
         [HttpPost("get-Invoice-Detail")]
         public async Task<ActionResult> GetListInvoice(Invoice invoice) {
             try

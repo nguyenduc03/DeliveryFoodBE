@@ -21,6 +21,8 @@ namespace Server.Controllers.api
             this.invoiceService = invoiceService;
         }
         //[Authorize(Roles = "Admin,Guest")]
+        [Authorize(Roles = "Guest")]
+
         [HttpPost("get-List-Invoice")]
         public async Task<ActionResult> GetListInvoice(Account account) {
             try
@@ -38,6 +40,7 @@ namespace Server.Controllers.api
             }
            
         }
+        [Authorize(Roles = "Guest")]
 
         [HttpPost("insert-Invoice")]
         public async Task<ActionResult> InsertInvoice(InvoiceInsertModel Input) {

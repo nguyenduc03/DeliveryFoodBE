@@ -14,7 +14,8 @@ namespace Sever.Controllers.api
             this.discountService = discountService;
         }
 
-        
+        [Authorize(Roles = "Guest")]
+
         [HttpGet("get-discount-available")]
         public async Task<ActionResult> GetDiscountAvailable()
         {
@@ -34,6 +35,8 @@ namespace Sever.Controllers.api
             }
 
         }
+        [Authorize(Roles = "Guest")]
+
         [HttpGet("get-discount-invoice")]
         public async Task<ActionResult> GetDiscountInvoice()
         {

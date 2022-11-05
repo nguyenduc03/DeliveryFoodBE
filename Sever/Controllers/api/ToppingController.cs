@@ -21,6 +21,8 @@ namespace Server.Controllers.api
             this.ToppingService = ToppingService;
         }
         //[Authorize(Roles = "Admin,Guest")]
+        [Authorize(Roles = "Guest")]
+
         [HttpPost("get-Topping-list")]
         public async Task<ActionResult> GetToppingList(Food food) {
             try
@@ -40,6 +42,7 @@ namespace Server.Controllers.api
            
         }
 
+        [Authorize(Roles = "Admin")]
 
         [HttpPost("insert-Topping")]
         public async Task<ActionResult> InsertTopping(ToppingInsertModel toppingInput) {
@@ -58,6 +61,8 @@ namespace Server.Controllers.api
             }
            
         }
+        [Authorize(Roles = "Admin")]
+
         [HttpPost("update-Topping")]
         public async Task<ActionResult> UpdateFood(Topping topping)
         {

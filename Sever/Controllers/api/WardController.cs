@@ -1,5 +1,6 @@
 ﻿using Lib.Entity;
 using Lib.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Sever.Controllers.api
@@ -13,6 +14,7 @@ namespace Sever.Controllers.api
         {
             this.WardService = WardService;
         }
+        [Authorize(Roles = "Guest")]
 
         [HttpGet("get-Ward")]
         public async Task<ActionResult> GetWard(DistrictModel district)

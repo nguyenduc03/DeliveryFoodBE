@@ -70,7 +70,6 @@ namespace Lib.Repositories
             return UploadIMG(path);
         }
         public static Cloudinary cloudinary;
-
         public const string CLOUD_NAME = "dtri2001";
         public const string API_KEY = "765345259495324";
         public const string API_SECRET = "xZYbElrhPLq784iYKHPNllFOY_8";
@@ -89,7 +88,6 @@ namespace Lib.Repositories
 
                 var uploadResult = cloudinary.Upload(uploadParams);
                  link = uploadResult.Uri.ToString();
-                Console.WriteLine("[Image was uploaded successfully]");
             }
             catch (Exception e)
             {

@@ -40,7 +40,7 @@ namespace Server.Controllers.api
             }
 
         }
-
+        [Authorize (Roles = "Guest")]
         [HttpPost("update-data")]
         public async Task<ActionResult> UpdateAccount(Account Input) {
             try

@@ -21,6 +21,8 @@ namespace Server.Controllers.api
             this.CategoryService = categoryService;
         }
         //[Authorize(Roles = "Admin,Guest")]
+        [Authorize(Roles = "Guest")]
+
         [HttpGet("get-category-list")]
         public async Task<ActionResult> GetStudentList() {
             try
@@ -39,6 +41,7 @@ namespace Server.Controllers.api
             }
            
         }
+        [Authorize(Roles = "Admin")]
 
         [HttpPost("insert-category")]
         public async Task<ActionResult> InsertCategory(CategoryInsertModel category) {

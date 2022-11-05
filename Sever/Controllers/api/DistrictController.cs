@@ -1,5 +1,6 @@
 ﻿using Lib.Entity;
 using Lib.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Sever.Controllers.api
@@ -13,6 +14,7 @@ namespace Sever.Controllers.api
         {
             this.districtService = districtService;
         }
+        [Authorize(Roles = "Guest")]
 
         [HttpGet("get-district")]
         public async Task<ActionResult> GetDistrict(ProvinceModel province)
